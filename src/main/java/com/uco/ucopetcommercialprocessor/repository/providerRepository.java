@@ -1,4 +1,4 @@
 package com.uco.ucopetcommercialprocessor.repository;
 
-public class providerController {
+public class providerRepository {
 }
