@@ -24,10 +24,10 @@ public class CommercialPropertiesCheck implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-        show("petcare", properties.sale());
-        show("order", properties.provider());
-        show("appointment", properties.purchases());
-        show("specialty", properties.healthPlan());
+        show("sale", properties.sale());
+        show("provider", properties.provider());
+        show("purchases", properties.purchases());
+        show("healthPlan", properties.healthPlan());
     }
 
     private void show(String module, CommercialQueueProperties.ModuleQueues queues) {
