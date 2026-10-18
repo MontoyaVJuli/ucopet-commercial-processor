@@ -1,7 +1,7 @@
 package com.uco.ucopetcommercialprocessor.service;
 
 import com.uco.ucopetcommercialprocessor.domain.ProviderDomain;
-import com.uco.ucopetcommercialprocessor.domain.ProviderValidationException;
+import com.uco.ucopetcommercialprocessor.exception.ProviderValidationException;
 import com.uco.ucopetcommercialprocessor.repository.ProviderRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;

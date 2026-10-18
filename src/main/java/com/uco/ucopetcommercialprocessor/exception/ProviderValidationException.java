@@ -1,4 +1,4 @@
-package com.uco.ucopetcommercialprocessor.domain;
+package com.uco.ucopetcommercialprocessor.exception;
 
 public class ProviderValidationException extends RuntimeException {
     public ProviderValidationException(String message) {

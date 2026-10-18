@@ -1,5 +1,6 @@
 package com.uco.ucopetcommercialprocessor.domain;
 
+import com.uco.ucopetcommercialprocessor.exception.ProviderValidationException;
 import jakarta.persistence.*;
 
 import java.util.UUID;
