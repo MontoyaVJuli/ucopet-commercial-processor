@@ -1,8 +1,8 @@
 package com.uco.ucopetcommercialprocessor.messages.provider;
 
-import com.uco.ucopetcommercialprocessor.domain.ProviderDomain;
-import com.uco.ucopetcommercialprocessor.exception.ProviderValidationException;
-import com.uco.ucopetcommercialprocessor.service.ProviderService;
+import com.uco.ucopetcommercialprocessor.domain.provider.ProviderDomain;
+import com.uco.ucopetcommercialprocessor.exception.provider.ProviderValidationException;
+import com.uco.ucopetcommercialprocessor.service.provider.ProviderService;
 import com.uco.ucopetcommercialprocessor.util.gson.MapperJsonObjeto;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;

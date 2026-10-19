@@ -1,4 +1,4 @@
-package com.uco.ucopetcommercialprocessor.domain;
+package com.uco.ucopetcommercialprocessor.domain.provider;
 
 public enum DocumentType {
     CC("Cedula de ciudadania"),

@@ -1,7 +1,7 @@
-package com.uco.ucopetcommercialprocessor.repository;
+package com.uco.ucopetcommercialprocessor.repository.provider;
 
-import com.uco.ucopetcommercialprocessor.domain.DocumentType;
-import com.uco.ucopetcommercialprocessor.domain.ProviderDomain;
+import com.uco.ucopetcommercialprocessor.domain.provider.DocumentType;
+import com.uco.ucopetcommercialprocessor.domain.provider.ProviderDomain;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

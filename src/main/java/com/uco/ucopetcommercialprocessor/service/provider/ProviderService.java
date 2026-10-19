@@ -1,8 +1,8 @@
-package com.uco.ucopetcommercialprocessor.service;
+package com.uco.ucopetcommercialprocessor.service.provider;
 
-import com.uco.ucopetcommercialprocessor.domain.ProviderDomain;
-import com.uco.ucopetcommercialprocessor.exception.ProviderValidationException;
-import com.uco.ucopetcommercialprocessor.repository.ProviderRepository;
+import com.uco.ucopetcommercialprocessor.domain.provider.ProviderDomain;
+import com.uco.ucopetcommercialprocessor.exception.provider.ProviderValidationException;
+import com.uco.ucopetcommercialprocessor.repository.provider.ProviderRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import java.util.NoSuchElementException;
