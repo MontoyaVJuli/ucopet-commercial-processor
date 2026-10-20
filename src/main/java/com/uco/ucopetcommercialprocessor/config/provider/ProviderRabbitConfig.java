@@ -1,5 +1,6 @@
-package com.uco.ucopetcommercialprocessor.config;
+package com.uco.ucopetcommercialprocessor.config.provider;
 
+import com.uco.ucopetcommercialprocessor.config.CommercialQueueProperties;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
