@@ -17,6 +17,10 @@ public class HealthPlanCoverageDomain {
     private HealthPlanDomain healthPlan;
 
     private UUID serviceId;
+
+    @Column(name = "procedure_id", nullable = false)
+    private UUID procedureId; // <-- ¡Agregado en el procesador para que JPA lo mapee hacia Postgres!
+
     private Integer coveragePercentage;
     private Double coverageLimit;
     private boolean deleted;
@@ -41,6 +45,9 @@ public class HealthPlanCoverageDomain {
 
     public UUID getServiceId() { return serviceId; }
     public void setServiceId(UUID serviceId) { this.serviceId = serviceId; }
+
+    public UUID getProcedureId() { return procedureId; } // <-- Get
+    public void setProcedureId(UUID procedureId) { this.procedureId = procedureId; } // <-- Set
 
     public Integer getCoveragePercentage() { return coveragePercentage; }
     public void setCoveragePercentage(Integer coveragePercentage) { this.coveragePercentage = coveragePercentage; }
