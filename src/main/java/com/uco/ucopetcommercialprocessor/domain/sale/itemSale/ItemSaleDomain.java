@@ -1,8 +1,7 @@
 package com.uco.ucopetcommercialprocessor.domain.sale.itemSale;
 
 import com.uco.ucopetcommercialprocessor.domain.sale.enums.TaxCategory;
-import com.uco.ucopetcommercialprocessor.dto.sale.itemSale.ItemSaleDTO;
-import com.uco.ucopetcommercialprocessor.dto.sale.enums.ItemType;
+import com.uco.ucopetcommercialprocessor.domain.sale.enums.ItemType;
 import jakarta.persistence.*;
 import org.springframework.data.domain.Persistable;
 
@@ -85,7 +84,4 @@ public class ItemSaleDomain implements Persistable<UUID> {
         this.isNew = false;
     }
 
-    public ItemSaleDTO toDTO() {
-        return new ItemSaleDTO(id, saleOrderId, itemId, itemType, taxCategory, quantity, unitPrice, subtotal);
-    }
 }
