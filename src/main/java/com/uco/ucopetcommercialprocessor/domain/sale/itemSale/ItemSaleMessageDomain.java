@@ -1,9 +1,9 @@
-package com.uco.ucopetcommercialprocessor.dto.sale.itemSale;
+package com.uco.ucopetcommercialprocessor.domain.sale.itemSale;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
-public record ItemSaleMessageDTO(
+public record ItemSaleMessageDomain(
         UUID id,
         UUID saleOrderId,
         UUID itemId,

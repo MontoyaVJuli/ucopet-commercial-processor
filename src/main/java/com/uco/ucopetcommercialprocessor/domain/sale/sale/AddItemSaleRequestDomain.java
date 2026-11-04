@@ -1,18 +1,18 @@
-package com.uco.ucopetcommercialprocessor.dto.sale.itemSale;
+package com.uco.ucopetcommercialprocessor.domain.sale.sale;
 
-import com.uco.ucopetcommercialprocessor.dto.sale.enums.ItemType;
+import com.uco.ucopetcommercialprocessor.domain.sale.enums.ItemType;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
-public class AddItemSaleRequestDTO {
+public class AddItemSaleRequestDomain {
 
     private UUID itemId;
     private ItemType itemType;
     private Integer quantity;
     private BigDecimal unitPrice;
 
-    public AddItemSaleRequestDTO() {
+    public AddItemSaleRequestDomain() {
     }
 
     public UUID getItemId() { return itemId; }

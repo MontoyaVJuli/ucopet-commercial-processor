@@ -1,7 +1,9 @@
+
 package com.uco.ucopetcommercialprocessor.util.gson;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.google.gson.*;
 import org.springframework.stereotype.Component;
 
@@ -17,8 +19,9 @@ public class MapperJsonObjetoJackson implements MapperJsonObjeto {
     public Optional<String> ejecutar(Object objeto) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.registerModule(new JavaTimeModule());
 
-            return Optional.ofNullable(objectMapper.writeValueAsString(objeto));
+            return Optional.of(objectMapper.writeValueAsString(objeto));
         } catch (JsonProcessingException e) {
             return Optional.empty();
         }
@@ -28,26 +31,39 @@ public class MapperJsonObjetoJackson implements MapperJsonObjeto {
     public <T> Optional<T> ejecutar(String json, Class<T> claseDestino) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.registerModule(new JavaTimeModule());
 
-            return Optional.ofNullable(objectMapper.readValue(json, claseDestino));
+            return Optional.of(objectMapper.readValue(json, claseDestino));
         } catch (Exception e) {
             return Optional.empty();
         }
     }
 
     @Override
-    public Optional<String> ejecutarGson(Object objecto) {
+    public Optional<String> ejecutarGson(Object objeto) {
         try {
-            Gson gson = new GsonBuilder().serializeNulls()
-                    .registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
-                        @Override
-                        public LocalDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-                            return LocalDateTime.parse(json.getAsString(), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-                        }
-                    })
+            Gson gson = new GsonBuilder()
+                    .serializeNulls()
+                    .registerTypeAdapter(LocalDateTime.class,
+                            new JsonDeserializer<LocalDateTime>() {
+                                @Override
+                                public LocalDateTime deserialize(
+                                        JsonElement json,
+                                        Type typeOfT,
+                                        JsonDeserializationContext context)
+                                        throws JsonParseException {
+
+                                    return LocalDateTime.parse(
+                                            json.getAsString(),
+                                            DateTimeFormatter.ISO_LOCAL_DATE_TIME
+                                    );
+                                }
+                            })
                     .create();
-            String objeto = gson.toJson(objecto);
-            return Optional.ofNullable(objeto);
+
+            String resultado = gson.toJson(objeto);
+
+            return Optional.of(resultado);
         } catch (Exception e) {
             return Optional.empty();
         }

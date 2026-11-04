@@ -1,7 +1,8 @@
-package com.uco.ucopetcommercialprocessor.repository.sale.ItemSale;
+package com.uco.ucopetcommercialprocessor.repository.sale.itemSale;
 
 import com.uco.ucopetcommercialprocessor.domain.sale.itemSale.ItemSaleDomain;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -11,7 +12,10 @@ public interface ItemSaleRepository {
 
     Optional<ItemSaleDomain> findById(UUID id);
 
-    boolean existsById(UUID id);
+    List<ItemSaleDomain> findBySaleOrderId(UUID saleOrderId);
 
     void deleteById(UUID id);
+
+    boolean existsById(UUID id);
+
 }
