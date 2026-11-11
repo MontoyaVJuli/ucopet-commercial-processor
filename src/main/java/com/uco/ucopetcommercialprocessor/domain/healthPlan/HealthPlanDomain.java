@@ -13,7 +13,7 @@ public class HealthPlanDomain {
     private String name;
     private String insuranceCompany;
 
-    @Column(length = 500)
+    @Column(length = 1000)
     private String description;
 
     @Enumerated(EnumType.STRING)
