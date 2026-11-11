@@ -36,8 +36,15 @@ public class PurchasesService {
         purchase.setPurchaseNumber(incoming.getPurchaseNumber());
         purchase.setSupplierId(incoming.getSupplierId());
         purchase.setHeadquarterId(incoming.getHeadquarterId());
+        purchase.setPurchaseDate(incoming.getPurchaseDate());
+        purchase.setSubtotal(incoming.getSubtotal());
+        purchase.setTotalTaxes(incoming.getTotalTaxes());
         purchase.setTotal(incoming.getTotal());
         purchase.setStatus(incoming.getStatus());
+        purchase.setExpenseId(incoming.getExpenseId());
+        purchase.setHasDiscount(incoming.isHasDiscount());
+        purchase.setUpdatedAt(incoming.getUpdatedAt());
+        purchase.setUpdatedByPersonId(incoming.getUpdatedByPersonId());
 
         purchasesRepository.save(purchase);
     }
