@@ -16,13 +16,6 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
-/**
- * Ver PurchasesSaveConsumer: usamos un ObjectMapper propio que ignora
- * propiedades desconocidas, porque ucopetapi manda la entidad Purchase
- * completa, no solo los campos que necesitamos aqui. Tambien registramos
- * un deserializador propio para LocalDateTime (ver PurchasesSaveConsumer
- * para el detalle de por que: Jackson 2.x clasico sin jackson-datatype-jsr310).
- */
 @Component
 public class PurchasesDeactivateConsumer {
 

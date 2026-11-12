@@ -36,10 +36,6 @@ public class PurchasesService {
         saveItems(incoming.getId(), incoming.getItems());
     }
 
-    // Antes esto nunca se guardaba: el mensaje traia los items (para
-    // calcular subtotal/impuestos/total en ucopetapi), pero esta clase solo
-    // insertaba la fila de "purchases" y los items se perdian, por lo que
-    // el detalle de la compra siempre mostraba "Sin items".
     private void saveItems(UUID purchaseId, List<PurchaseItemMessage> items) {
         if (items == null || items.isEmpty()) {
             return;
