@@ -6,9 +6,12 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -61,11 +64,24 @@ public class PurchasesDomain {
     @Column(name = "updated_by_person_id")
     private UUID updatedByPersonId;
 
+    // Los items de la compra viajan en el mismo mensaje (ver Purchase.items
+    // en ucopetapi), pero esta clase mapea la tabla "purchases": se marca
+    // @Transient para que Jackson la llene al leer el JSON sin que Hibernate
+    // intente guardarla como columna. Quien la persiste de verdad, en
+    // purchase_items, es PurchasesService usando PurchaseItemEntity.
+    @Transient
+    private List<PurchaseItemMessage> items = new ArrayList<>();
+
     public enum Status {
         PENDING, RECEIVED, CANCELLED, LINKED
     }
 
+    public List<PurchaseItemMessage> getItems() { return items; }
+    public void setItems(List<PurchaseItemMessage> items) { this.items = items; }
+
     public PurchasesDomain() {
+        // Constructor vacio requerido por JPA/Hibernate para instanciar la
+        // entidad por reflexion al recuperarla de la base de datos.
     }
 
     public UUID getId() { return id; }
