@@ -1,21 +1,29 @@
 package com.uco.ucopetcommercialprocessor.service.purchases;
 
+import com.uco.ucopetcommercialprocessor.domain.purchases.PurchaseItemEntity;
+import com.uco.ucopetcommercialprocessor.domain.purchases.PurchaseItemMessage;
 import com.uco.ucopetcommercialprocessor.domain.purchases.PurchasesDomain;
 import com.uco.ucopetcommercialprocessor.exception.purchases.PurchasesValidationException;
+import com.uco.ucopetcommercialprocessor.repository.purchases.PurchaseItemsRepository;
 import com.uco.ucopetcommercialprocessor.repository.purchases.PurchasesRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.UUID;
 
 @Service
 public class PurchasesService {
 
     private final PurchasesRepository purchasesRepository;
+    private final PurchaseItemsRepository purchaseItemsRepository;
 
-    public PurchasesService(PurchasesRepository purchasesRepository) {
+    public PurchasesService(PurchasesRepository purchasesRepository,
+                             PurchaseItemsRepository purchaseItemsRepository) {
         this.purchasesRepository = purchasesRepository;
+        this.purchaseItemsRepository = purchaseItemsRepository;
     }
 
     @Transactional
@@ -25,6 +33,29 @@ public class PurchasesService {
             return;
         }
         purchasesRepository.save(incoming);
+        saveItems(incoming.getId(), incoming.getItems());
+    }
+
+    // Antes esto nunca se guardaba: el mensaje traia los items (para
+    // calcular subtotal/impuestos/total en ucopetapi), pero esta clase solo
+    // insertaba la fila de "purchases" y los items se perdian, por lo que
+    // el detalle de la compra siempre mostraba "Sin items".
+    private void saveItems(UUID purchaseId, List<PurchaseItemMessage> items) {
+        if (items == null || items.isEmpty()) {
+            return;
+        }
+        for (PurchaseItemMessage itemMessage : items) {
+            PurchaseItemEntity item = new PurchaseItemEntity();
+            item.setId(itemMessage.getId() != null ? itemMessage.getId() : UUID.randomUUID());
+            item.setPurchaseId(purchaseId);
+            item.setProductId(itemMessage.getProductId());
+            item.setItemType(PurchaseItemEntity.ItemType.valueOf(itemMessage.getItemType()));
+            item.setQuantity(itemMessage.getQuantity());
+            item.setUnitPrice(itemMessage.getUnitPrice());
+            item.setSubtotal(itemMessage.getSubtotal());
+            item.setTaxCategory(PurchaseItemEntity.TaxCategory.valueOf(itemMessage.getTaxCategory()));
+            purchaseItemsRepository.save(item);
+        }
     }
 
     @Transactional
